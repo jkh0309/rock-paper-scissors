@@ -1,0 +1,48 @@
+<script>
+    function computerPlay() {
+        let num = Math.floor(Math.random()*3);
+
+        if (num == 0) {
+            return 'rock';
+        } else if (num == 1) {
+            return 'paper';
+        } else {
+            return 'scissors';
+        }
+    }
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function playRound(playerSelection, computerSelection) {
+        if (playerSelection.toLowerCase() == computerSelection) {
+            playerScore++
+            computerScore++
+            return `A tie! Both of you played ${playerSelection}!`;
+        } else if (playerSelection.toLowerCase() == 'rock' && computerSelection == 'paper' || playerSelection.toLowerCase() == 'paper' && computerSelection == 'scissors' || playerSelection.toLowerCase() == 'scissors' && computerSelection == 'rock') {
+            computerScore++
+            return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        } else if (computerSelection == 'rock' && playerSelection.toLowerCase() == 'paper' || computerSelection == 'paper' && playerSelection.toLowerCase() == 'scissors' || computerSelection == 'scissors' && playerSelection.toLowerCase() == 'rock') {
+            playerScore++
+            return `You win! ${playerSelection} beats ${computerSelection}!`;
+        } else {
+            return 'Something went wrong! Try again!';
+        }
+    }
+
+    function game() {
+        console.log(playRound(prompt('Please enter rock, paper, or scissors.'), computerPlay()))
+        console.log(playRound(prompt('Please enter rock, paper, or scissors.'), computerPlay()))
+        console.log(playRound(prompt('Please enter rock, paper, or scissors.'), computerPlay()))
+        console.log(playRound(prompt('Please enter rock, paper, or scissors.'), computerPlay()))
+        console.log(playRound(prompt('Please enter rock, paper, or scissors.'), computerPlay()))
+        if (computerScore > playerScore) {
+            return console.log(`The computer scored ${computerScore}. You scored ${playerScore}. You lost.`)
+        } else {
+            return console.log(`You scored ${playerScore}. The computer scored ${computerScore}. You win!`)
+        }
+    }
+
+    game(); 
+
+</script>
